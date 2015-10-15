@@ -13,4 +13,4 @@ __Funcionalidades:__
 - Notificações (E-mail, SMS)
 - Pessoa Jurídica
     - Gerenciamento de Clientes
-    - Pesquisa de Satisfação (Entrega e Produto)Markdown Preview
+    - Pesquisa de Satisfação (Entrega e Produto)
