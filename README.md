@@ -14,3 +14,15 @@ __Funcionalidades:__
 - Pessoa Jurídica
     - Gerenciamento de Clientes
     - Pesquisa de Satisfação (Entrega e Produto)
+
+__Instalação__
+Primeiro instalem o [NodeJs e o NPM](https://nodejs.org/en/).
+
+Depois os seguintes módulos de forma global (npm install -g modulo):
+- bower, yeoman, gulp, nodemon
+
+No diretório root, execute:
+```
+npm install
+bower install
+```
