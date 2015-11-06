@@ -9,6 +9,7 @@ var app = express();
 global.db = mongoose.connect('mongodb://localhost/manage-shipment');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
