@@ -2,59 +2,65 @@ module.exports = function(app) {
 	var User = app.models.user;
 
 	var UserController = {
-		list: function(callback) {
+		index: function(req, res) {
 			User.find({}, function(error, users) {
 				if(error) {
-					callback({error: 'Could not find the users.'});
+					res.json({ error: 'Could not find the users.' });
 				} else {
-					callback(users);
+					res.json(users);
 				}
 			});
 		},
-		show: function(id, callback) {
+		show: function(req, res) {
+			var id = req.params.id;
+
 			User.findById(id, function(error, user) {
 				if(error) {
-					callback({error: 'Não foi possível encontrar o usuário.'});
+					res.json({error: 'Não foi possível encontrar o usuário.'});
 				} else {
-					callback(user);
+					res.json(user);
 				}
 			});
 		},
-		store: function(name, email, password, callback) {
+		store: function(req, res) {
+			var fields = req.body;
+
 			new User({
-				'name': name,
-				'email': email,
-				'password': password
+				'name': fields.name,
+				'email': fields.email,
+				'password': fields.password
 			}).save(function(error, user){
 				if (error) {
-					callback({error: 'Could not save the user.'});
+					res.json({error: 'Could not save the user.'});
 				} else {
-					callback({
+					res.json({
 						'message': "User create success!",
 						'user': user
 					});
 				}
 			});
 		},
-		update: function(id, name, email, password, callback) {
+		update: function(req, res) {
+			var fields = req.body;
+
 			User.findById(id, function(error, user) {
-				if(name) {
-					user.name = name
+				if(fields.name) {
+					user.name = fields.name
 				}
 
-				if(email) {
-					user.email = email
+				if(fields.email) {
+					user.email = fields.email
 				}
 
-				if(password) {
-					user.password = password
+				if(fields.password) {
+					user.password = fields.password
 				}
 
 				user.save(function(error, user) {
 					if(error) {
-						callback({error: 'Não foi possível salvar o usuário.'});
+						res.json({error: 'Could not update the user.'});
 					} else {
-						callback(user);
+						res.json(user);
 					}
 				});
 			});
