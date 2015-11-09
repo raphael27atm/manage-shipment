@@ -17,7 +17,7 @@ module.exports = function(app) {
 
 			User.findById(id, function(error, user) {
 				if(error) {
-					res.json({error: 'Não foi possível encontrar o usuário.'});
+					res.json({error: 'Could not find the user.'});
 				} else {
 					res.json(user);
 				}
@@ -36,7 +36,7 @@ module.exports = function(app) {
 					res.json({error: 'Could not save the user.'});
 				} else {
 					res.json({
-						'message': "User create success!",
+						'message': "User successfully created!",
 						'user': user
 					});
 				}
@@ -58,7 +58,10 @@ module.exports = function(app) {
 					if(error) {
 						res.json({error: 'Could not update the user.'});
 					} else {
-						res.json(user);
+						res.json({
+							'message': "User successfully updated!",
+							'user': user
+						});
 					}
 				});
 			});
