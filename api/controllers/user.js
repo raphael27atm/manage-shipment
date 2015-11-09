@@ -11,6 +11,7 @@ module.exports = function(app) {
 				}
 			});
 		},
+
 		show: function(req, res) {
 			var id = req.params.id;
 
@@ -22,6 +23,7 @@ module.exports = function(app) {
 				}
 			});
 		},
+
 		store: function(req, res) {
 			var fields = req.body;
 
@@ -40,20 +42,16 @@ module.exports = function(app) {
 				}
 			});
 		},
+
 		update: function(req, res) {
+			var id = req.params.id;
 			var fields = req.body;
 
 			User.findById(id, function(error, user) {
-				if(fields.name) {
-					user.name = fields.name
-				}
-
-				if(fields.email) {
-					user.email = fields.email
-				}
-
-				if(fields.password) {
-					user.password = fields.password
+				for (var key in fields) {
+				  if(fields[key]) {
+					  user[key] = fields[key];
+					}
 				}
 
 				user.save(function(error, user) {

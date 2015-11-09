@@ -9,5 +9,5 @@ module.exports = function(app) {
 	app.get('/api/v1/users', userController.index);
 	app.post('/api/v1/users', userController.store);
 	app.get('/api/v1/users/:id', userController.show);
-	app.put('/api/v1/users', userController.update);
+	app.put('/api/v1/users/:id', userController.update);
 };
